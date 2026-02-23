@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA - Vista Previa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #2d3748;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4f46e5, #ec4899);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 12px;
+            border: 3px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-button {
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.9), rgba(236, 72, 153, 0.9));
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #4f46e5;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 1rem;
+        }
+
+        .icon-1 { background: linear-gradient(135deg, #4f46e5, #6366f1); color: white; }
+        .icon-2 { background: linear-gradient(135deg, #ec4899, #f472b6); color: white; }
+        .icon-3 { background: linear-gradient(135deg, #10b981, #34d399); color: white; }
+        .icon-4 { background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; }
+
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #4f46e5, #ec4899);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .product-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 200px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #9ca3af;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-category {
+            display: inline-block;
+            background: #4f46e5;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #4f46e5;
+            margin: 0.5rem 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+            color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-img">L</div>
+                <div class="logo-text">LUMINA</div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-button">Inicio</button>
+                <button class="nav-button">Catálogo</button>
+                <button class="nav-button">Contacto</button>
+                <button class="nav-button">Carrito</button>
+            </div>
+        </header>
+
+        <div class="hero">
+            <h1>LUMINA</h1>
+            <p style="font-size: 1.5rem; margin-bottom: 1.5rem;">Tu estilo, tu frecuencia ∿</p>
+            <p style="max-width: 600px; margin: 0 auto 2rem; opacity: 0.9;">
+                Descubre prendas únicas que reflejan tu personalidad. Moda contemporánea con estilo propio.
+            </p>
+            <button class="button" style="padding: 1rem 2rem; font-size: 1.125rem;">
+                Ver Catálogo
+            </button>
+        </div>
+
+        <div class="section">
+            <h2>✨ Mejoras Implementadas</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon icon-1">🎨</div>
+                    <h3>Nueva Paleta de Colores</h3>
+                    <p>Combinación moderna con gradientes vibrantes y diseño contemporáneo.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-2">🛍️</div>
+                    <h3>Catálogo Mejorado</h3>
+                    <p>Sistema fácil para agregar prendas con formulario interactivo y vista previa.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-3">⚡</div>
+                    <h3>Compra Directa</h3>
+                    <p>Redirección inmediata a MercadoLibre para una compra rápida y segura.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-4">💎</div>
+                    <h3>Interfaz Moderna</h3>
+                    <p>Diseño responsivo con animaciones suaves y experiencia de usuario mejorada.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>👕 Ejemplo de Catálogo</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">👕</div>
+                    <div class="product-info">
+                        <span class="product-category">Ropa Casual</span>
+                        <h3>Camiseta Básica</h3>
+                        <div class="product-price">$25.99</div>
+                        <button class="button" style="width: 100%; margin-top: 0.5rem;">
+                            Comprar en MercadoLibre
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">👖</div>
+                    <div class="product-info">
+                        <span class="product-category">Pantalones</span>
+                        <h3>Jeans Slim Fit</h3>
+                        <div class="product-price">$49.99</div>
+                        <button class="button" style="width: 100%; margin-top: 0.5rem;">
+                            Comprar en MercadoLibre
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">👗</div>
+                    <div class="product-info">
+                        <span class="product-category">Vestidos</span>
+                        <h3>Vestido Elegante</h3>
+                        <div class="product-price">$79.99</div>
+                        <button class="button" style="width: 100%; margin-top: 0.5rem;">
+                            Comprar en MercadoLibre
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🚀 Cómo Ver la Web Completa</h2>
+            <p>Para ver la aplicación React completa con todas las funcionalidades:</p>
+            <ol style="margin: 1rem 0 1.5rem 2rem; line-height: 2;">
+                <li><strong>Instala Node.js 20+</strong> en Windows desde nodejs.org</li>
+                <li><strong>Abre PowerShell</strong> y navega a la carpeta LuminaWeb</li>
+                <li><strong>Ejecuta:</strong> <code>npm install</code> y luego <code>npm run dev</code></li>
+                <li><strong>Abre tu navegador</strong> en <code>http://localhost:5173</code></li>
+            </ol>
+            <button class="button" onclick="window.open('http://localhost:5173', '_blank')">
+                Abrir Aplicación Completa
+            </button>
+        </div>
+
+        <footer>
+            <p>© 2024 LUMINA - Moda Contemporánea</p>
+            <p style="font-size: 0.875rem; margin-top: 0.5rem;">
+                Diseño mejorado con React, Vite y una nueva paleta de colores moderna
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Simular navegación
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('En la aplicación completa, esto navegaría a: ' + this.textContent);
+            });
+        });
+
+        // Simular compra
+        document.querySelectorAll('.product-card .button').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('¡Redirigiendo a MercadoLibre para completar tu compra!');
+            });
+        });
+    </script>
+</body>
+</html>

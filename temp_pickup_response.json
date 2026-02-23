@@ -1,0 +1,8 @@
+{
+  "meta": "error",
+  "error": {
+    "code": "Malformed JSON",
+    "description": "Invalid JSON",
+    "message": ""
+  }
+}
