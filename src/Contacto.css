@@ -1,0 +1,149 @@
+.contacto-container {
+    max-width: 800px;
+}
+
+.contacto-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contacto-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.contacto-header p {
+    font-size: 1.125rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contacto-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.contacto-form-container,
+.contacto-info-container {
+    flex: 1 1 300px;
+}
+
+.contacto-card {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.contacto-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-success-message {
+    background-color: #d1fae5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.contacto-info-card {
+    margin-bottom: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.info-icon.email { background-color: var(--primary-color); }
+.info-icon.telefono { background-color: var(--secondary-color); }
+.info-icon.horario { background-color: var(--accent-color); }
+
+.info-details div:first-child {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.info-details a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.colaboracion-card {
+    background-color: #f0f9ff;
+    border: 2px solid #dbeafe;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+}
+
+.colaboracion-card h4 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.colaboracion-card p {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+.colaboracion-card a.button-secondary {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* 4. Estilo para celulares (pantallas menores a 768px) */
+@media (max-width: 768px) {
+  .contacto-header h2 {
+    font-size: 2rem;
+  }
+}
