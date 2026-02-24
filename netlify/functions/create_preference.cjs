@@ -1,18 +1,15 @@
-const mercadopago = require('mercadopago');
+const { MercadoPagoConfig, Preference } = require('mercadopago');
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  // Configura tu Access Token de Mercado Pago
-  // NOTA: Si acabas de instalar la librería y te da error "mercadopago.configure is not a function",
-  // es porque tienes la versión 2.x. Este código es para la versión 1.x.
-  mercadopago.configure({
-    access_token: process.env.MP_ACCESS_TOKEN
-  });
-
   try {
+    // Configuración para Mercado Pago versión 2.x
+    const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
+    const preference = new Preference(client);
+
     const data = JSON.parse(event.body);
     const { items, shippingCost, shippingDestination, shippingCarrier, shippingService } = data;
 
@@ -22,7 +19,7 @@ exports.handler = async (event, context) => {
       ? `${process.env.URL}/.netlify/functions/mp_webhook`
       : 'https://tu-sitio-temporal.netlify.app/.netlify/functions/mp_webhook';
 
-    const preference = {
+    const preferenceData = {
       items: items,
       // Guardamos los datos de envío en metadata para que el Robot los lea después
       metadata: {
@@ -45,17 +42,17 @@ exports.handler = async (event, context) => {
       auto_return: "approved",
     };
 
-    const response = await mercadopago.preferences.create(preference);
+    const response = await preference.create({ body: preferenceData });
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ id: response.body.id }),
+      body: JSON.stringify({ id: response.id }),
     };
   } catch (error) {
     console.error('Error al crear preferencia:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Error interno del servidor' }),
+      body: JSON.stringify({ error: 'Error interno del servidor: ' + error.message }),
     };
   }
 };
