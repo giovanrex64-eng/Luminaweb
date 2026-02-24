@@ -121,46 +121,54 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
     }).format(precio);
   };
 
-  const [manualCost, setManualCost] = useState('');
-
   return (
     <div className="formulario-envio-card">
       <style>{`
         .formulario-envio-card {
-          background-color: #f9fafb;
-          padding: 1.5rem;
-          border-radius: 8px;
-          margin-bottom: 2rem;
-          border: 1px solid #e5e7eb;
+          background-color: #fff;
+          padding: 2.5rem;
+          border-radius: 16px;
+          margin-bottom: 2.5rem;
+          border: 1px solid #f3f4f6;
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
         }
         .destino-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 1rem;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 1.5rem;
         }
         .form-input-full {
           width: 100%;
-          padding: 0.5rem;
-          border: 1px solid #d1d5db;
-          border-radius: 4px;
-          font-size: 0.875rem;
+          padding: 0.875rem 1rem;
+          border: 1px solid #e5e7eb;
+          border-radius: 8px;
+          font-size: 1rem;
           box-sizing: border-box;
+          background-color: #f9fafb;
+          transition: all 0.2s;
+        }
+        .form-input-full:focus {
+          background-color: #fff;
+          border-color: var(--primary-color);
+          box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+          outline: none;
         }
         @media (max-width: 768px) {
           .formulario-envio-card {
-            padding: 1rem;
+            padding: 1.5rem;
           }
           .destino-grid {
             grid-template-columns: 1fr;
+            gap: 1.25rem;
           }
         }
       `}</style>
-      <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', fontWeight: '600' }}>
+      <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem', fontWeight: '700', color: '#111827' }}>
         📦 Información de Envío
       </h3>
 
       {/* Origen Fijo */}
-      <div style={{ marginBottom: '1.5rem', padding: '1rem', backgroundColor: '#e0f2fe', borderRadius: '8px', border: '1px solid #bae6fd' }}>
+      <div style={{ marginBottom: '2rem', padding: '1.25rem', backgroundColor: '#f0f9ff', borderRadius: '12px', borderLeft: '5px solid #0ea5e9' }}>
         <p style={{ fontSize: '0.875rem', color: '#0369a1', fontWeight: '500', marginBottom: '0.5rem' }}>
           ✓ Enviamos desde:
         </p>
@@ -170,13 +178,13 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
       </div>
 
       {/* Destino */}
-      <div style={{ marginBottom: '1.5rem' }}>
-        <h4 style={{ fontSize: '1rem', marginBottom: '1rem', fontWeight: '600', color: '#374151' }}>
+      <div style={{ marginBottom: '2rem' }}>
+        <h4 style={{ fontSize: '1.1rem', marginBottom: '1.25rem', fontWeight: '600', color: '#374151' }}>
           Destino
         </h4>
         <div className="destino-grid">
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500' }}>
+            <label style={{ display: 'block', marginBottom: '0.6rem', fontSize: '0.95rem', fontWeight: '600', color: '#4b5563' }}>
               Provincia *
             </label>
             <select
@@ -191,7 +199,7 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
             </select>
           </div>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500' }}>
+            <label style={{ display: 'block', marginBottom: '0.6rem', fontSize: '0.95rem', fontWeight: '600', color: '#4b5563' }}>
               Ciudad *
             </label>
             <select
@@ -208,7 +216,7 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
             </select>
           </div>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500' }}>
+            <label style={{ display: 'block', marginBottom: '0.6rem', fontSize: '0.95rem', fontWeight: '600', color: '#4b5563' }}>
               Código Postal *
             </label>
             <input
@@ -224,7 +232,7 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
             />
           </div>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500' }}>
+            <label style={{ display: 'block', marginBottom: '0.6rem', fontSize: '0.95rem', fontWeight: '600', color: '#4b5563' }}>
               Calle y número
             </label>
             <input
@@ -244,15 +252,16 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
         disabled={loadingShipping}
         style={{
           width: '100%',
-          padding: '0.75rem',
+          padding: '1rem',
           backgroundColor: 'var(--primary-color)',
           color: 'white',
           border: 'none',
-          borderRadius: '4px',
+          borderRadius: '8px',
           cursor: 'pointer',
-          fontSize: '1rem',
+          fontSize: '1.1rem',
           fontWeight: '600',
-          opacity: loadingShipping ? 0.7 : 1
+          opacity: loadingShipping ? 0.7 : 1,
+          boxShadow: '0 4px 6px -1px rgba(79, 70, 229, 0.2)'
         }}
       >
         {loadingShipping ? 'Obteniendo cotizaciones...' : 'Obtener Opciones de Envío'}
@@ -265,7 +274,7 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
           padding: '1rem',
           backgroundColor: '#fee2e2',
           color: '#991b1b',
-          borderRadius: '4px',
+          borderRadius: '8px',
           border: '1px solid #fecaca'
         }}>
           ⚠️ {shippingError}
@@ -274,8 +283,8 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
 
       {/* Opciones de envío */}
       {shippingOptions.length > 0 && (
-        <div style={{ marginTop: '1.5rem' }}>
-          <h4 style={{ fontSize: '1rem', marginBottom: '1rem', fontWeight: '600', color: '#374151' }}>
+        <div style={{ marginTop: '2rem' }}>
+          <h4 style={{ fontSize: '1.1rem', marginBottom: '1rem', fontWeight: '600', color: '#374151' }}>
             Selecciona una opción de envío:
           </h4>
           <div style={{ display: 'grid', gap: '0.75rem' }}>
@@ -284,10 +293,10 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
                 key={index}
                 onClick={() => handleSelectShipping(option)}
                 style={{
-                  padding: '1rem',
+                  padding: '1.25rem',
                   backgroundColor: selectedShipping?.id === option.id ? '#dbeafe' : 'white',
                   border: selectedShipping?.id === option.id ? '2px solid var(--primary-color)' : '1px solid #d1d5db',
-                  borderRadius: '4px',
+                  borderRadius: '12px',
                   cursor: 'pointer',
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -314,19 +323,9 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
 
       {/* Fallback: no opciones */}
       {!loadingShipping && !shippingError && shippingOptions.length === 0 && (
-        <div style={{ marginTop: '1rem', padding: '1rem', borderRadius: '6px', border: '1px dashed #e5e7eb', background: '#fff' }}>
-          <p style={{ margin: 0, color: '#374151' }}>No se encontraron opciones de envío para los datos ingresados.</p>
-          <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-            <button onClick={handleObtenerCotizacion} style={{ padding: '0.5rem 0.75rem', background: '#0369a1', color: 'white', border: 'none', borderRadius: '4px' }}>Reintentar</button>
-            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-              <input type="number" placeholder="Costo de envío manual" value={manualCost} onChange={(e) => setManualCost(e.target.value)} style={{ padding: '0.5rem', border: '1px solid #d1d5db', borderRadius: '4px' }} />
-              <button onClick={() => {
-                const cost = Number(manualCost) || 0;
-                const manualOption = { id: 'manual', carrier: 'Manual', service: 'Manual', rate: cost, currency: 'ARS', days: 'N/A' };
-                handleSelectShipping(manualOption);
-              }} style={{ padding: '0.5rem 0.75rem', background: '#059669', color: 'white', border: 'none', borderRadius: '4px' }}>Aplicar costo manual</button>
-            </div>
-          </div>
+        <div style={{ marginTop: '1.5rem', padding: '1.5rem', borderRadius: '8px', border: '2px dashed #e5e7eb', background: '#fff', textAlign: 'center' }}>
+          <p style={{ margin: '0 0 1rem 0', color: '#374151', fontSize: '1.1rem' }}>No se encontraron opciones de envío para los datos ingresados.</p>
+          <button onClick={handleObtenerCotizacion} style={{ padding: '0.75rem 1.5rem', background: '#0369a1', color: 'white', border: 'none', borderRadius: '6px', fontSize: '1rem', cursor: 'pointer' }}>Reintentar Búsqueda</button>
         </div>
       )}
     </div>
