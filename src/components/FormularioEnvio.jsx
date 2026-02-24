@@ -323,9 +323,30 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
 
       {/* Fallback: no opciones */}
       {!loadingShipping && !shippingError && shippingOptions.length === 0 && (
-        <div style={{ marginTop: '1.5rem', padding: '1.5rem', borderRadius: '8px', border: '2px dashed #e5e7eb', background: '#fff', textAlign: 'center' }}>
-          <p style={{ margin: '0 0 1rem 0', color: '#374151', fontSize: '1.1rem' }}>No se encontraron opciones de envío para los datos ingresados.</p>
-          <button onClick={handleObtenerCotizacion} style={{ padding: '0.75rem 1.5rem', background: '#0369a1', color: 'white', border: 'none', borderRadius: '6px', fontSize: '1rem', cursor: 'pointer' }}>Reintentar Búsqueda</button>
+        <div style={{ 
+          marginTop: '1.5rem', 
+          padding: '1.5rem', 
+          borderRadius: '8px', 
+          border: '2px dashed #e5e7eb', 
+          background: '#fff', 
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center'
+        }}>
+          <p style={{ margin: '0 0 1rem 0', color: '#374151', fontSize: '1rem' }}>No se encontraron opciones de envío para los datos ingresados.</p>
+          <button onClick={handleObtenerCotizacion} style={{ 
+            padding: '0.75rem 1.5rem', 
+            background: '#0369a1', 
+            color: 'white', 
+            border: 'none', 
+            borderRadius: '6px', 
+            fontSize: '1rem', 
+            cursor: 'pointer',
+            maxWidth: '100%'
+          }}>
+            Reintentar Búsqueda
+          </button>
         </div>
       )}
     </div>
