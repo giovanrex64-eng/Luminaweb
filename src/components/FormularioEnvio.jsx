@@ -110,7 +110,12 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
   const handleSelectShipping = (option) => {
     seleccionarEnvio(option);
     if (onShippingChange) {
-      onShippingChange(option);
+      // Preparamos la dirección con el código de provincia correcto para enviarla al padre
+      const destinationWithCode = {
+        ...formData.destination,
+        state: getProvinceCode(formData.destination.state) || formData.destination.state
+      };
+      onShippingChange(option, destinationWithCode);
     }
   };
 

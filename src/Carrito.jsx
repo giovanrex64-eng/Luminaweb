@@ -11,6 +11,7 @@ function Carrito() {
   const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
   const [costoEnvio, setCostoEnvio] = useState(0);
   const [shippingSelected, setShippingSelected] = useState(null);
+  const [shippingDestination, setShippingDestination] = useState(null);
   const [showPickupUI, setShowPickupUI] = useState(false);
 
   React.useEffect(() => {
@@ -92,7 +93,8 @@ function Carrito() {
           shippingCost: costoEnvio,
           shippingService: shippingSelected?.service || 'Estándar',
           shippingCarrier: shippingSelected?.carrier || 'Envia',
-          shippingDays: shippingSelected?.days || 'N/A'
+          shippingDays: shippingSelected?.days || 'N/A',
+          shippingDestination: shippingDestination // <--- Enviamos la dirección aquí
         }),
       });
 
@@ -115,9 +117,10 @@ function Carrito() {
     }
   };
 
-  const handleShippingChange = (shippingOption) => {
+  const handleShippingChange = (shippingOption, destination) => {
     setCostoEnvio(shippingOption.rate || 0);
     setShippingSelected(shippingOption);
+    setShippingDestination(destination);
   };
 
   const totalConEnvio = obtenerTotal() + costoEnvio;
