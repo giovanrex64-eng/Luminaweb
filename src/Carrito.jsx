@@ -136,12 +136,77 @@ function Carrito() {
   return (
     <AnimatedSection>
       <div className="container" style={{ maxWidth: '900px' }}>
-        <div style={{
-          backgroundColor: 'var(--card-bg)',
-          padding: '2rem',
-          borderRadius: 'var(--radius-lg)',
-          boxShadow: 'var(--shadow-md)'
-        }}>
+        <style>{`
+          .carrito-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+          }
+          .carrito-table {
+            width: 100%;
+            border-collapse: collapse;
+          }
+          .carrito-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #e5e7eb;
+          }
+          .carrito-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: middle;
+          }
+          
+          /* Estilos Responsivos para Móvil */
+          @media (max-width: 768px) {
+            .carrito-card {
+              padding: 1rem; /* Menos padding para ganar espacio */
+            }
+            .carrito-table thead {
+              display: none; /* Ocultar encabezados de tabla */
+            }
+            .carrito-table, .carrito-table tbody, .carrito-table tr, .carrito-table td {
+              display: block;
+              width: 100%;
+            }
+            .carrito-table tr {
+              margin-bottom: 1.5rem;
+              border: 1px solid #e5e7eb;
+              border-radius: 12px;
+              padding: 0;
+              box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+              overflow: hidden;
+            }
+            .carrito-table td {
+              padding: 0.75rem 1rem;
+              text-align: right;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              border-bottom: 1px solid #f3f4f6;
+            }
+            .carrito-table td::before {
+              content: attr(data-label);
+              font-weight: 600;
+              color: #6b7280;
+              text-align: left;
+            }
+            /* Estilo especial para la celda del nombre del producto */
+            .carrito-table td:first-child {
+              background-color: #f9fafb;
+              flex-direction: column;
+              align-items: flex-start;
+              text-align: left;
+              border-bottom: 1px solid #e5e7eb;
+            }
+            .carrito-table td:first-child::before {
+              display: none;
+            }
+          }
+        `}</style>
+        <div className="carrito-card">
           <h2 style={{ fontSize: '2rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <span>🛒</span> Carrito de Compras
           </h2>
@@ -164,14 +229,14 @@ function Carrito() {
               {/* Lista de productos */}
               <div style={{ marginBottom: '2rem' }}>
                 <div style={{ overflowX: 'auto' }}>
-                  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                  <table className="carrito-table">
                     <thead>
-                      <tr style={{ borderBottom: '2px solid #e5e7eb' }}>
-                        <th style={{ padding: '1rem', textAlign: 'left', fontWeight: '600' }}>Producto</th>
-                        <th style={{ padding: '1rem', textAlign: 'center', fontWeight: '600' }}>Precio</th>
-                        <th style={{ padding: '1rem', textAlign: 'center', fontWeight: '600' }}>Cantidad</th>
-                        <th style={{ padding: '1rem', textAlign: 'right', fontWeight: '600' }}>Subtotal</th>
-                        <th style={{ padding: '1rem', textAlign: 'center', fontWeight: '600' }}>Acciones</th>
+                      <tr>
+                        <th>Producto</th>
+                        <th style={{ textAlign: 'center' }}>Precio</th>
+                        <th style={{ textAlign: 'center' }}>Cantidad</th>
+                        <th style={{ textAlign: 'right' }}>Subtotal</th>
+                        <th style={{ textAlign: 'center' }}>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -183,17 +248,17 @@ function Carrito() {
                         const subtotal = precioUnitario * item.cantidad;
 
                         return (
-                          <tr key={item.id} style={{ borderBottom: '1px solid #e5e7eb' }}>
-                            <td style={{ padding: '1rem' }}>
+                          <tr key={item.id}>
+                            <td data-label="Producto">
                               <div>
-                                <p style={{ fontWeight: '600', marginBottom: '0.25rem' }}>{item.nombre}</p>
+                                <p style={{ fontWeight: '700', fontSize: '1.1rem', marginBottom: '0.25rem', color: '#111827' }}>{item.nombre}</p>
                                 <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>{item.descripcion}</p>
                               </div>
                             </td>
-                            <td style={{ padding: '1rem', textAlign: 'center' }}>
+                            <td data-label="Precio" style={{ textAlign: 'center' }}>
                               {formatearPrecio(precioUnitario)}
                             </td>
-                            <td style={{ padding: '1rem', textAlign: 'center' }}>
+                            <td data-label="Cantidad" style={{ textAlign: 'center' }}>
                               <input
                                 type="number"
                                 min="1"
@@ -208,10 +273,10 @@ function Carrito() {
                                 }}
                               />
                             </td>
-                            <td style={{ padding: '1rem', textAlign: 'right', fontWeight: '600' }}>
+                            <td data-label="Subtotal" style={{ textAlign: 'right', fontWeight: '600', color: '#4f46e5' }}>
                               {formatearPrecio(subtotal)}
                             </td>
-                            <td style={{ padding: '1rem', textAlign: 'center' }}>
+                            <td data-label="Acciones" style={{ textAlign: 'center' }}>
                               <button
                                 onClick={() => removerDelCarrito(item.id)}
                                 style={{
