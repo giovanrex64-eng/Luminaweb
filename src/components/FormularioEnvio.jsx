@@ -124,13 +124,37 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
   const [manualCost, setManualCost] = useState('');
 
   return (
-    <div style={{
-      backgroundColor: '#f9fafb',
-      padding: '1.5rem',
-      borderRadius: '8px',
-      marginBottom: '2rem',
-      border: '1px solid #e5e7eb'
-    }}>
+    <div className="formulario-envio-card">
+      <style>{`
+        .formulario-envio-card {
+          background-color: #f9fafb;
+          padding: 1.5rem;
+          border-radius: 8px;
+          margin-bottom: 2rem;
+          border: 1px solid #e5e7eb;
+        }
+        .destino-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1rem;
+        }
+        .form-input-full {
+          width: 100%;
+          padding: 0.5rem;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          font-size: 0.875rem;
+          box-sizing: border-box;
+        }
+        @media (max-width: 768px) {
+          .formulario-envio-card {
+            padding: 1rem;
+          }
+          .destino-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
       <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', fontWeight: '600' }}>
         📦 Información de Envío
       </h3>
@@ -150,7 +174,7 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
         <h4 style={{ fontSize: '1rem', marginBottom: '1rem', fontWeight: '600', color: '#374151' }}>
           Destino
         </h4>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+        <div className="destino-grid">
           <div>
             <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500' }}>
               Provincia *
@@ -158,13 +182,7 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
             <select
               value={formData.destination.state}
               onChange={(e) => handleDestinationChange('state', e.target.value)}
-              style={{
-                width: '100%',
-                padding: '0.5rem',
-                border: '1px solid #d1d5db',
-                borderRadius: '4px',
-                fontSize: '0.875rem'
-              }}
+              className="form-input-full"
             >
               <option value="">Seleccionar provincia...</option>
               {PROVINCIAS_LISTA.map((prov) => (
@@ -179,13 +197,7 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
             <select
               value={formData.destination.city}
               onChange={(e) => handleCitySelect(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '0.5rem',
-                border: '1px solid #d1d5db',
-                borderRadius: '4px',
-                fontSize: '0.875rem'
-              }}
+              className="form-input-full"
             >
               <option value="">Seleccionar ciudad...</option>
               {ciudadesDisponibles.map((ciudad, i) => (
@@ -204,12 +216,8 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
               placeholder="Se completa automáticamente"
               value={formData.destination.postal_code}
               readOnly
+              className="form-input-full"
               style={{
-                width: '100%',
-                padding: '0.5rem',
-                border: '1px solid #d1d5db',
-                borderRadius: '4px',
-                fontSize: '0.875rem',
                 backgroundColor: '#f3f4f6',
                 cursor: 'not-allowed'
               }}
@@ -224,13 +232,7 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
               placeholder="Ej: San Martín 123"
               value={formData.destination.address}
               onChange={(e) => handleDestinationChange('address', e.target.value)}
-              style={{
-                width: '100%',
-                padding: '0.5rem',
-                border: '1px solid #d1d5db',
-                borderRadius: '4px',
-                fontSize: '0.875rem'
-              }}
+              className="form-input-full"
             />
           </div>
         </div>
