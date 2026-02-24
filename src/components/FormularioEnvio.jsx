@@ -293,26 +293,28 @@ const FormularioEnvio = ({ onShippingChange, carrito = [] }) => {
                 key={index}
                 onClick={() => handleSelectShipping(option)}
                 style={{
-                  padding: '1.25rem',
-                  backgroundColor: selectedShipping?.id === option.id ? '#dbeafe' : 'white',
-                  border: selectedShipping?.id === option.id ? '2px solid var(--primary-color)' : '1px solid #d1d5db',
+                  padding: '1rem 1.25rem',
+                  backgroundColor: selectedShipping?.id === option.id ? '#eff6ff' : 'white',
+                  border: selectedShipping?.id === option.id ? '2px solid var(--primary-color)' : '1px solid #e5e7eb',
                   borderRadius: '12px',
                   cursor: 'pointer',
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  transition: 'all 0.2s ease'
+                  transition: 'all 0.2s ease',
+                  textAlign: 'left',
+                  gap: '1rem'
                 }}
               >
-                <div>
-                  <p style={{ fontWeight: '600', marginBottom: '0.25rem' }}>
-                    {option.carrier} - {option.service}
+                <div style={{ flex: 1 }}>
+                  <p style={{ fontWeight: '600', margin: '0 0 0.25rem 0', color: '#1f2937' }}>
+                    {option.carrier} <span style={{ fontWeight: '400', color: '#6b7280' }}>- {option.service}</span>
                   </p>
-                  <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>
-                    Entrega: {option.days ? `${option.days} días` : option.eta || 'N/A'}
+                  <p style={{ fontSize: '0.875rem', color: '#6b7280', margin: 0 }}>
+                    ⏱️ Entrega: {option.days ? `${option.days} días` : option.eta || 'N/A'}
                   </p>
                 </div>
-                <p style={{ fontWeight: '700', fontSize: '1.125rem', color: 'var(--primary-color)' }}>
+                <p style={{ fontWeight: '700', fontSize: '1.125rem', color: 'var(--primary-color)', margin: 0, whiteSpace: 'nowrap' }}>
                   {formatearPrecio(option.rate)}
                 </p>
               </div>
