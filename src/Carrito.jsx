@@ -20,7 +20,7 @@ function Carrito() {
     
     // LOG DE DEPURACIÓN: Verificar modo en el Frontend
     const isTestKey = publicKey && publicKey.startsWith('TEST-');
-    console.log(`🔑 FRONTEND MP: ${isTestKey ? '🟢 SANDBOX (PRUEBA)' : '🔴 PRODUCCIÓN (REAL)'}`);
+    console.log(`🔑 FRONTEND MP: ${isTestKey ? '🟢 SANDBOX (TEST-)' : '💳 PRODUCCIÓN (APP_USR-)'}`);
     console.log('🔑 Public Key cargada:', publicKey);
 
     if (publicKey) {

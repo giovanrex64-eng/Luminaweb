@@ -11,7 +11,7 @@ exports.handler = async (event, context) => {
     
     // LOG DE DEPURACIÓN: Nos dirá si estamos usando credenciales de TEST o de PRODUCCIÓN
     const isTestToken = token && token.startsWith('TEST-');
-    console.log(`🔑 MODO MERCADO PAGO: ${isTestToken ? '🟢 SANDBOX (PRUEBA)' : '🔴 PRODUCCIÓN (REAL)'}`);
+    console.log(`🔑 MODO MERCADO PAGO: ${isTestToken ? '🟢 SANDBOX (TEST-)' : '💳 PRODUCCIÓN (APP_USR-)'}`);
     console.log('🔑 Token cargado:', token ? `...${token.slice(-4)}` : 'NO DEFINIDO');
 
     const client = new MercadoPagoConfig({ accessToken: token });
