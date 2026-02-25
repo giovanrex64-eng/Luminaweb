@@ -7,7 +7,11 @@ exports.handler = async (event, context) => {
 
   try {
     // Configuración para Mercado Pago versión 2.x
-    const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
+    // Debug: Verificar que las credenciales se cargaron (solo mostramos los últimos 4 caracteres por seguridad)
+    const token = process.env.MP_ACCESS_TOKEN;
+    console.log('🔑 Iniciando preferencia con Token:', token ? `...${token.slice(-4)}` : 'NO DEFINIDO');
+
+    const client = new MercadoPagoConfig({ accessToken: token });
     const preference = new Preference(client);
 
     const data = JSON.parse(event.body);
@@ -49,7 +53,9 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ id: response.id }),
     };
   } catch (error) {
-    console.error('Error al crear preferencia:', error);
+    console.error('Error al crear preferencia:', error); // Log simple
+    if (error.cause) console.error('Causa del error MP:', JSON.stringify(error.cause, null, 2)); // Log detallado de MP
+    
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'Error interno del servidor: ' + error.message }),

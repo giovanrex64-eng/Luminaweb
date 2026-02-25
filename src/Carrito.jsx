@@ -17,6 +17,8 @@ function Carrito() {
   React.useEffect(() => {
     // Inicializa Mercado Pago con tu Public Key
     const publicKey = import.meta.env.VITE_MP_PUBLIC_KEY;
+    console.log('🔑 Public Key cargada:', publicKey ? `...${publicKey.slice(-4)}` : 'NO DEFINIDA');
+
     if (publicKey) {
       initMercadoPago(publicKey, {
         locale: 'es-AR',
@@ -57,6 +59,7 @@ function Carrito() {
           title: item.nombre,
           unit_price: precio,
           quantity: item.cantidad,
+          currency_id: 'ARS', // Importante: Especificar la moneda
         };
       });
 
