@@ -7,9 +7,12 @@ exports.handler = async (event, context) => {
 
   try {
     // Configuración para Mercado Pago versión 2.x
-    // Debug: Verificar que las credenciales se cargaron (solo mostramos los últimos 4 caracteres por seguridad)
     const token = process.env.MP_ACCESS_TOKEN;
-    console.log('🔑 Iniciando preferencia con Token:', token ? `...${token.slice(-4)}` : 'NO DEFINIDO');
+    
+    // LOG DE DEPURACIÓN: Nos dirá si estamos usando credenciales de TEST o de PRODUCCIÓN
+    const isTestToken = token && token.startsWith('TEST-');
+    console.log(`🔑 MODO MERCADO PAGO: ${isTestToken ? '🟢 SANDBOX (PRUEBA)' : '🔴 PRODUCCIÓN (REAL)'}`);
+    console.log('🔑 Token cargado:', token ? `...${token.slice(-4)}` : 'NO DEFINIDO');
 
     const client = new MercadoPagoConfig({ accessToken: token });
     const preference = new Preference(client);

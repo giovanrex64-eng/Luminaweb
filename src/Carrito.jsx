@@ -17,7 +17,11 @@ function Carrito() {
   React.useEffect(() => {
     // Inicializa Mercado Pago con tu Public Key
     const publicKey = import.meta.env.VITE_MP_PUBLIC_KEY;
-    console.log('🔑 Public Key cargada:', publicKey ? `...${publicKey.slice(-4)}` : 'NO DEFINIDA');
+    
+    // LOG DE DEPURACIÓN: Verificar modo en el Frontend
+    const isTestKey = publicKey && publicKey.startsWith('TEST-');
+    console.log(`🔑 FRONTEND MP: ${isTestKey ? '🟢 SANDBOX (PRUEBA)' : '🔴 PRODUCCIÓN (REAL)'}`);
+    console.log('🔑 Public Key cargada:', publicKey);
 
     if (publicKey) {
       initMercadoPago(publicKey, {
