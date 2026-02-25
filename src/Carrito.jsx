@@ -138,7 +138,8 @@ function Carrito() {
         <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
           <h2 style={{ marginBottom: '2rem' }}>Completa tu pago</h2>
           <Wallet 
-            initialization={{ preferenceId: preferenceId, redirectMode: 'modal' }} 
+            key={preferenceId}
+            initialization={{ preferenceId: preferenceId }} 
             customization={{ texts: { valueProp: 'smart_option' } }} 
             onError={(error) => console.error('Wallet Error:', error)}
           />
