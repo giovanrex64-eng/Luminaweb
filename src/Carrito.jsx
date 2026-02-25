@@ -137,7 +137,16 @@ function Carrito() {
       <AnimatedSection>
         <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
           <h2 style={{ marginBottom: '2rem' }}>Completa tu pago</h2>
-          <Wallet initialization={{ preferenceId: preferenceId }} customization={{ texts: { valueProp: 'smart_option' } }} />
+          <Wallet 
+            initialization={{ preferenceId: preferenceId, redirectMode: 'modal' }} 
+            customization={{ texts: { valueProp: 'smart_option' } }} 
+            onError={(error) => console.error('Wallet Error:', error)}
+          />
+          <button 
+            onClick={() => setPreferenceId(null)} 
+            style={{ marginTop: '2rem', background: 'none', border: 'none', textDecoration: 'underline', cursor: 'pointer', color: '#6b7280', fontSize: '0.9rem' }}>
+            ← Volver al carrito para modificar
+          </button>
         </div>
       </AnimatedSection>
     );
