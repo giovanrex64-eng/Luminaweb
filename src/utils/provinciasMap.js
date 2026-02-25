@@ -8,7 +8,7 @@ export const PROVINCIAS_MAP = {
   'Catamarca': 'CT',
   'Chaco': 'CC',
   'Chubut': 'CH',
-  'Ciudad Autónoma de Buenos Aires': 'CABA',
+  'Ciudad Autónoma de Buenos Aires': 'CF', // Corregido de 'CABA' a 'CF' (Capital Federal)
   'Córdoba': 'CO',
   'Corrientes': 'CR',
   'Entre Ríos': 'ER',
@@ -27,7 +27,7 @@ export const PROVINCIAS_MAP = {
   'Santa Fe': 'SF',
   'Santiago del Estero': 'SE',
   'Tierra del Fuego': 'TF',
-  'Tucumán': 'TM'
+  'Tucumán': 'TU' // Corregido de 'TM' a 'TU'
 };
 
 /**
