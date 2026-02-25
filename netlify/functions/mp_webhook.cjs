@@ -76,7 +76,7 @@ exports.handler = async (event, context) => {
               content: "Indumentaria",
               amount: 1,
               type: "box",
-              dimensions: { length: 30, width: 20, height: 10 }, // Dimensiones estándar
+              dimensions: { length: 30, width: 20, height: 10, weightUnit: 'kg', distanceUnit: 'cm' }, // Dimensiones estándar
               weight: 1,
               insurance: 0,
               declaredValue: payment.transaction_amount
