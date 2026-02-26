@@ -17,3 +17,9 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[context.production.environment]
+  URL = "https://luminaweb.netlify.app"
+
+[context.deploy-preview.environment]
+  URL = "https://deploy-preview-${PULL_REQUEST_ID}--luminaweb.netlify.app"
