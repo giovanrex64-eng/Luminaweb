@@ -19,7 +19,7 @@
   status = 200
 
 [context.production.environment]
-  URL = "https://luminaweb.netlify.app"
+  URL = "https://eloquent-puffpuff-c48359.netlify.app"
 
 [context.deploy-preview.environment]
-  URL = "https://deploy-preview-${PULL_REQUEST_ID}--luminaweb.netlify.app"
+  URL = "https://deploy-preview-${PULL_REQUEST_ID}--eloquent-puffpuff-c48359.netlify.app"
